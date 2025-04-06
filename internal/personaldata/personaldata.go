@@ -10,8 +10,6 @@ type Personal struct {
 }
 
 // metod Print()
-func (p Personal) Print() {
-	fmt.Printf("Имя: %s\n", p.Name)
-	fmt.Printf("Вес: %.1f\n", p.Weight)
-	fmt.Printf("Рост: %.1f\n", p.Height)
+func (p Personal) Print() string {
+	return fmt.Sprintf("Имя: %s\nВес: %.1f\nРост: %.1f", p.Name, p.Weight, p.Height)
 }

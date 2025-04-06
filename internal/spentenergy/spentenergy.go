@@ -91,6 +91,6 @@ func MeanSpeed(steps int, duration time.Duration) float64 {
 //
 // steps int — количество совершенных действий (число шагов при ходьбе и беге).
 func Distance(steps int) float64 {
-	distance := float64(steps) * lenStep / float64(mInKm)
+	distance := float64(steps) * lenStep / mInKm
 	return distance
 }

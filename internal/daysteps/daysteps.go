@@ -25,26 +25,26 @@ type DaySteps struct {
 func (ds *DaySteps) Parse(datastring string) error {
 	parts := strings.Split(datastring, ",")
 	if len(parts) != 2 {
-		return fmt.Errorf("неверный формат данных, ожидается 'шаги,длительность'")
+		return fmt.Errorf("invalid data format, expected 'steps,duration'")
 	}
 
 	// steps parsing
 	steps, err := strconv.Atoi(strings.TrimSpace(parts[0]))
 	if err != nil {
-		return fmt.Errorf("неверный формат количества шагов: %v", err)
+		return fmt.Errorf("invalid format for numbers of steps: %v", err)
 	}
 	if steps <= 0 {
-		return fmt.Errorf("количество шагов должно быть положительным")
+		return fmt.Errorf("number of steps must be positive")
 	}
 	ds.Steps = steps
 
 	// duration parsing
 	duration, err := time.ParseDuration(strings.TrimSpace(parts[1]))
 	if err != nil {
-		return fmt.Errorf("неверный формат длительности: %v", err)
+		return fmt.Errorf("invalid format of duretion: %v", err)
 	}
 	if duration <= 0 {
-		return fmt.Errorf("длительность должна быть положительной")
+		return fmt.Errorf("duration must be positive")
 	}
 	ds.Duration = duration
 
@@ -64,9 +64,7 @@ func (ds DaySteps) ActionInfo() (string, error) {
 		return "", fmt.Errorf("error calories counting: %v", err)
 	}
 
-	info := fmt.Sprintf("Количество шагов: %d.\n", ds.Steps)
-	info += fmt.Sprintf("Дистанция составила %.2f км.\n", distance)
-	info += fmt.Sprintf("Вы сожгли %.2f ккал.", calories)
+	info := fmt.Sprintf("Количество шагов: %d.\nДистанция составила %.2f км.\nВы сожгли %.2f ккал.", ds.Steps, distance, calories)
 
 	return info, nil
 }

@@ -16,13 +16,13 @@ func Info(dataset []string, dp DataParser) {
 
 		err := dp.Parse(data)
 		if err != nil {
-			fmt.Printf("error of name %d: %v\n", i+1, err)
+			fmt.Printf("error of name %d: %v\n", i, err)
 			continue
 		}
 
 		info, err := dp.ActionInfo()
 		if err != nil {
-			fmt.Printf("error of forming information %d: %v\n", i+1, err)
+			fmt.Printf("error of forming information %d: %v\n", i, err)
 			continue
 		}
 
